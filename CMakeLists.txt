@@ -26,7 +26,10 @@ conan_cmake_run(
 			#BUILD missing
 			)
 
-add_executable ( ${PROJECT_NAME} "main.cpp")
+add_executable ( ${PROJECT_NAME} 
+		main.cpp
+		Mesh/Mesh.cpp
+)
 # message(Message ${CMAKE_CURRENT_SOURCE_DIR})
 # message(Message ${CMAKE_CURRENT_BINARY_DIR})
 # file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/input.txt
@@ -35,10 +38,14 @@ add_executable ( ${PROJECT_NAME} "main.cpp")
 # find_package(Threads REQUIRED)
 # find_package(glfw glew glm REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
-#find_package(GLEW REQUIRED)
+find_package(GLEW REQUIRED)
 #find_package(OpenGL REQUIRED)
-find_package(glm  REQUIRED)
-target_link_libraries(${PROJECT_NAME} CONAN_PKG::glfw CONAN_PKG::glew CONAN_PKG::glm)
+find_package(glm REQUIRED)
+target_link_libraries(${PROJECT_NAME} 
+		CONAN_PKG::glfw 
+		CONAN_PKG::glew 
+		CONAN_PKG::glm
+		)
 
 enable_testing(false)
 
