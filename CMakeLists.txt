@@ -19,10 +19,11 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 conan_cmake_run(
 			#REQUIRES glfw/3.3.2@bincrafters/stable
 			#OPTIONS glfw3:shared=True
-			GENERATORS cmake
+			#GENERATORS cmake
 			#ENV env_var=value
 			CONANFILE conanfile.txt
-            BASIC_SETUP CMAKE_TARGETS 
+			BASIC_SETUP CMAKE_TARGETS 
+			BUILD_TYPE "Debug"
 			#BUILD missing
 			)
 

@@ -14,6 +14,7 @@ glm/0.9.9.5@g-truc/stable
 
 [generators]
 cmake
+#virtualenv
 
 # [env]
  #CC=/usr/bin/clang
@@ -21,7 +22,8 @@ cmake
 
 [options]
 glfw3:shared=True
-#*:shared=True
+glm:shared=True
+*:shared=True
 
 [imports]
 bin, *.dll -> ./bin # Copies all dll files from packages bin folder to my "bin" folder
