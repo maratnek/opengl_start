@@ -2,9 +2,9 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("opengl_first")
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+# set(CMAKE_CXX_STANDARD 14)
+# set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Download automatically, you can also just copy the conan.cmake file
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -19,13 +19,16 @@ include(${CMAKE_BINARY_DIR}/conan.cmake)
 conan_cmake_run(
 			#REQUIRES glfw/3.3.2@bincrafters/stable
 			#OPTIONS glfw3:shared=True
-			#GENERATORS cmake
+			# GENERATORS cmake cmake_paths cmake_find_package
 			#ENV env_var=value
 			CONANFILE conanfile.txt
 			BASIC_SETUP CMAKE_TARGETS 
 			BUILD_TYPE "Debug"
 			#BUILD missing
 			)
+			
+conan_set_find_library_paths()
+
 
 add_executable ( ${PROJECT_NAME} 
 		main.cpp
@@ -38,10 +41,14 @@ add_executable ( ${PROJECT_NAME}
 
 # find_package(Threads REQUIRED)
 # find_package(glfw glew glm REQUIRED)
-find_package(glfw3 CONFIG REQUIRED)
-find_package(GLEW REQUIRED)
-#find_package(OpenGL REQUIRED)
+# find_package(glfw3 CONFIG REQUIRED)
 find_package(glm REQUIRED)
+find_package(GLEW REQUIRED)
+# find_package(glfw3 CONFIG REQUIRED)
+# find_package(glfw REQUIRED)
+# find_package(glfw3 3.2 REQUIRED)
+# find_package(OpenGL REQUIRED)
+
 target_link_libraries(${PROJECT_NAME} 
 		CONAN_PKG::glfw 
 		CONAN_PKG::glew 
