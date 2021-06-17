@@ -7,7 +7,7 @@ void Mesh::setTriData(std::vector<Vertex>& vertices, std::vector<uint32_t>& indi
     { { 0.0f, -1.0f, 0.0f }, // Position
       { 0.0f, 0.0f, 1.0 },   // Normal
       { 1.0f, 0.0f, 0.0 },   // Color
-      { 0.0, 1.0 }        // Texture Coordinate
+      { 0.0, 1.0 }           // Texture Coordinate
     }, // 0
     { { 1.0f, 1.0f, 0.0f }, { 0.0f, 0.0f, 1.0 }, { 0.0f, 1.0f, 0.0 }, { 0.0, 0.0 } }, // 1
     { { -1.0f, 1.0f, 0.0f }, { 0.0f, 0.0f, 1.0 }, { 0.0f, 0.0f, 1.0 }, { 1.0, 0.0 } }, // 2
