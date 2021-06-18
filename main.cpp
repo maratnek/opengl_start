@@ -10,6 +10,24 @@
 
 #include "Mesh/Mesh.h"
 #include "Camera.h"
+#include "ShaderLoader.h"
+#include "LightRenderer.h"
+
+Camera* camera;
+LightRenderer* light;
+
+void initGame() {
+  glEnable(GL_DEPTH_TEST);
+
+  ShaderLoader shader;
+
+  GLuint flatShaderProgram = shader.createProgramm("Assets/Shaders/FlatModel.vs", "Assets/Shaders/FlatModel.fs");
+  camera = new Camera(45.0f, 800, 600, 0.1f, 100.0f, glm::vec3(0.0f, 4.0f, 6.0f));
+
+  light = new LightRenderer(MeshType::kTriangle, camera);
+  light->setProgram(flatShaderProgram);
+  light->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+}
 
 void renderScene()
 {
@@ -17,6 +35,7 @@ void renderScene()
   glClearColor(1.0f, 0.0f, 1.0f, 0.0f);
   // glFlush();
   // glLoadIdentity();
+  light->draw();
   std::cout << "Update Render" << std::endl;
 
   // Draw game object here
@@ -33,10 +52,11 @@ int main()
 
   if (glfwInit())
   {
-    glewInit();
     std::cout << "GLFW Init" << std::endl;
     GLFWwindow *window = glfwCreateWindow(600, 800, "Winner", NULL, NULL);
     glfwMakeContextCurrent(window);
+    glewInit();
+    initGame();
 
     while (!glfwWindowShouldClose(window)) // render our scene
     {
@@ -56,6 +76,10 @@ int main()
   {
     std::cerr << "Error GLFW Init" << std::endl;
   }
+  
+  delete camera;
+  delete light;
 
-  system("pause");
+  return 0;
+
 }
