@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera(GLfloat FOV, GLfloat width, GLfloat height, GLfloat nearPlane, GLfloat farPlane, glm::vec3 camPos)
-    : cameraPos(camPos),
+    : cameraPos(camPos)
 {
     glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, 0.0f);
     glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);

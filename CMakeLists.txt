@@ -33,11 +33,20 @@ conan_set_find_library_paths()
 add_executable ( ${PROJECT_NAME} 
 		main.cpp
 		Mesh/Mesh.cpp
+		Camera.cpp
+		LightRenderer.cpp
+		ShaderLoader.cpp
 )
 # message(Message ${CMAKE_CURRENT_SOURCE_DIR})
 # message(Message ${CMAKE_CURRENT_BINARY_DIR})
 # file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/input.txt
         # DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+
+		add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+		COMMAND ${CMAKE_COMMAND} -E copy_directory
+		"${PROJECT_SOURCE_DIR}/resource"
+		$<TARGET_FILE_DIR:${PROJECT_NAME}>
+	)
 
 # find_package(Threads REQUIRED)
 # find_package(glfw glew glm REQUIRED)
