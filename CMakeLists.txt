@@ -2,9 +2,9 @@ cmake_minimum_required (VERSION 3.8)
 
 project ("opengl_first")
 
-# set(CMAKE_CXX_STANDARD 14)
-# set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Download automatically, you can also just copy the conan.cmake file
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -21,6 +21,7 @@ conan_cmake_run(
 			#OPTIONS glfw3:shared=True
 			# GENERATORS cmake cmake_paths cmake_find_package
 			#ENV env_var=value
+			# PROFILE gcc
 			CONANFILE conanfile.txt
 			BASIC_SETUP CMAKE_TARGETS 
 			BUILD_TYPE "Debug"

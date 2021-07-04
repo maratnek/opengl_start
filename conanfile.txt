@@ -1,12 +1,3 @@
-# here you create own settings
-#[settings]
- #os=Macos
- #arch=x86_64
- #compiler=clang
- #compiler.version=3.5
- #compiler.libcxx=libstdc++11
- #build_type=Release
-
 [requires]
 glfw/3.3.2
 glew/2.1.0
