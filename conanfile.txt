@@ -4,14 +4,11 @@ glew/2.1.0
 glm/0.9.9.5@g-truc/stable
 
 [generators]
+#xcode
 cmake
 cmake_paths
 cmake_find_package
 #virtualenv
-
-# [env]
- #CC=/usr/bin/clang
- #CXX=/usr/bin/clang++
 
 [options]
 glfw3:shared=True
@@ -20,4 +17,5 @@ glm:shared=True
 
 [imports]
 bin, *.dll -> ./bin # Copies all dll files from packages bin folder to my "bin" folder
-lib, *.dylib* -> ./bin # Copies all dylib files from packages lib folder to my "bin" folder
+#lib, *.dylib* -> ./bin # Copies all dylib files from packages lib folder to my "bin" folder
+lib, *.dylib* -> ./Debug # Copies all dylib files from packages lib folder to my "bin" folder

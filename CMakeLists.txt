@@ -1,10 +1,10 @@
 cmake_minimum_required (VERSION 3.8)
 
-project ("opengl_first")
-
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+project("opengl_first")
 
 # Download automatically, you can also just copy the conan.cmake file
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -28,7 +28,10 @@ conan_cmake_run(
 			#BUILD missing
 			)
 			
-conan_set_find_library_paths()
+conan_basic_setup()
+
+    set(CMAKE_INCLUDE_PATH ${CONAN_INCLUDE_DIRS} ${CMAKE_INCLUDE_PATH})
+    set(CMAKE_LIBRARY_PATH ${CONAN_LIB_DIRS} ${CMAKE_LIBRARY_PATH})
 
 
 add_executable ( ${PROJECT_NAME} 
@@ -52,8 +55,8 @@ add_executable ( ${PROJECT_NAME}
 # find_package(Threads REQUIRED)
 # find_package(glfw glew glm REQUIRED)
 # find_package(glfw3 CONFIG REQUIRED)
-find_package(glm REQUIRED)
-find_package(GLEW REQUIRED)
+# find_package(glm REQUIRED)
+# find_package(GLEW REQUIRED)
 # find_package(glfw3 CONFIG REQUIRED)
 # find_package(glfw REQUIRED)
 # find_package(glfw3 3.2 REQUIRED)

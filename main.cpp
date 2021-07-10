@@ -8,6 +8,8 @@
 // glfw
 #include <GLFW/glfw3.h>
 
+#define BUFFER_OFFSET(i) ((char *)NULL + (i))
+
 #include "Mesh/Mesh.h"
 #include "Camera.h"
 #include "ShaderLoader.h"
@@ -45,6 +47,15 @@ int main()
 {
   std::cout << "Start glfw" << std::endl;
   std::cout << "Start glm" << std::endl;
+
+#ifdef __APPLE__
+  /* We need to explicitly ask for a 3.2 context on OS X */
+  glfwWindowHint (GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint (GLFW_CONTEXT_VERSION_MINOR, 2);
+  glfwWindowHint (GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+  glfwWindowHint (GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+#endif
+  // printf("Supported GLSL version is %s.\n", (char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
   // glm::vec4 position = glm::vec4(glm::vec3(0.0), 1.0);
   // glm::mat4 model = glm::mat4(1.0);
   // model[3] = glm::vec4(1.0, 1.0, 0.0, 1.0);
@@ -56,14 +67,16 @@ int main()
     GLFWwindow *window = glfwCreateWindow(600, 800, "Winner", NULL, NULL);
     glfwMakeContextCurrent(window);
     glewInit();
-    initGame();
+     initGame();
 
     while (!glfwWindowShouldClose(window)) // render our scene
     {
       int width, height;
       glfwGetFramebufferSize(window, &width, &height);
       //ratio = width / (float)height;
-      glViewport(0, 0, width, height);
+//      glViewport(0, 0, width, height);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(1.0f, 0.0f, 1.0f, 0.0f);
 
       renderScene();
       glfwSwapBuffers(window);
