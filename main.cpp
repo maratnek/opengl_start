@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 // glm
 #include "glm/glm.hpp"
 //#include <cstdlib>
@@ -27,6 +28,10 @@ void initGame() {
   light = new LightRenderer(MeshType::kTriangle, camera);
   light->setProgram(flatShaderProgram);
   light->setPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+
+  auto sh_light = std::make_shared<LightRenderer>(MeshType::kCube, camera);
+  sh_light->setProgram(flatShaderProgram);
+  sh_light->setPosition(glm::vec3(100.0f, 0.0f, 0.0f));
 }
 
 void renderScene()
