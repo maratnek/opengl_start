@@ -58,14 +58,14 @@ void initGame() {
 	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver();
 
 	dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, broadphase, solver, collisionConfiguration);
-	dynamicsWorld->setGravity(btVector3(0, -9.8f, 0));
+	dynamicsWorld->setGravity(btVector3(0.0f, -19.8f, 0.1f));
 	
 	// Sphere Rigid Body
 
 	btCollisionShape* sphereShape = new btSphereShape(1);
 	btDefaultMotionState* sphereMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, 10, 0)));
 
-	btScalar mass = 10.0;
+	btScalar mass = 5.0;
 	btVector3 sphereInertia(0, 0, 0);
 	sphereShape->calculateLocalInertia(mass, sphereInertia);
 
@@ -87,9 +87,10 @@ void initGame() {
 	// Ground Rigid body
 
 	btCollisionShape* groundShape = new btBoxShape(btVector3(4.0f, 0.5f, 4.0f));
-	btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(0, -2.0f, 0)));
+	btDefaultMotionState* groundMotionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(1.0f, -5.0f, 3.0f)));
 
-	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0.0f, new btDefaultMotionState(), groundShape, btVector3(0, 0, 0));
+	btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0.0f, new btDefaultMotionState(), groundShape, btVector3(10, 10, 10));
+	// btRigidBody::btRigidBodyConstructionInfo groundRigidBodyCI(0.0f, groundMotionState, groundShape, btVector3(10, 10, 10));
 
 	btRigidBody* groundRigidBody = new btRigidBody(groundRigidBodyCI);
 
@@ -106,6 +107,7 @@ void initGame() {
 	ground->setProgram(texturedShaderProgram);
 	ground->setTexture(groundTexture);
 	ground->setScale(glm::vec3(4.0f, 0.5f, 4.0f));
+	// ground->setPosition(glm::vec3(0.0f, 0.0f, 1.0f));
 }
 
 

@@ -55,10 +55,10 @@ void MeshRenderer::draw()
     glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(translate.getX(), translate.getY(), translate.getZ()));
     glm::mat4 ScaleMatrix = glm::scale(glm::mat4(1.0f), scale);
 
-    // glm::mat4 TranslationMatrix = glm::translate(glm::mat4(1.0f), position);
+    glm::mat4 TranslationMatrixPos = glm::translate(glm::mat4(1.0f), position);
     // glm::mat4 ScaleMatrix = glm::scale(glm::mat4(1.0f), scale);
     modelMatrix = glm::mat4(1.0f);
-    modelMatrix = TranslationMatrix * ScaleMatrix * RotationMatrix;
+    modelMatrix = TranslationMatrix * ScaleMatrix * RotationMatrix * TranslationMatrixPos;
 
     glm::mat4 vp = camera->getProjectionMatrix() * camera->getViewMatrix();
     glUseProgram(this->program);
