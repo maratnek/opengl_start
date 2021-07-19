@@ -12,5 +12,5 @@ private:
 public:
     // ShaderLoader();
     // ~ShaderLoader();
-    GLuint createProgramm(const char* vertexShaderFilename, const char* fragmentShaderFilename);
+    GLuint createProgram(const char* vertexShaderFilename, const char* fragmentShaderFilename);
 };

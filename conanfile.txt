@@ -2,16 +2,14 @@
 glfw/3.3.2
 glew/2.1.0
 glm/0.9.9.5@g-truc/stable
+stb/20190512@conan/stable
+bullet3/3.17
 
 [generators]
 cmake
 cmake_paths
 cmake_find_package
 #virtualenv
-
-# [env]
- #CC=/usr/bin/clang
- #CXX=/usr/bin/clang++
 
 [options]
 glfw3:shared=True

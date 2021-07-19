@@ -21,22 +21,27 @@ conan_cmake_run(
 			#OPTIONS glfw3:shared=True
 			# GENERATORS cmake cmake_paths cmake_find_package
 			#ENV env_var=value
-			# PROFILE gcc
+			PROFILE gcc
 			CONANFILE conanfile.txt
 			BASIC_SETUP CMAKE_TARGETS 
 			BUILD_TYPE "Debug"
-			#BUILD missing
+			BUILD missing
 			)
 			
 conan_set_find_library_paths()
 
 
 add_executable ( ${PROJECT_NAME} 
-		main.cpp
+		source.cpp
+		# main.cpp
 		Mesh/Mesh.cpp
 		Camera.cpp
 		LightRenderer.cpp
 		ShaderLoader.cpp
+
+		# buildging objects
+		MeshRenderer.cpp
+		TextureLoader.cpp
 )
 # message(Message ${CMAKE_CURRENT_SOURCE_DIR})
 # message(Message ${CMAKE_CURRENT_BINARY_DIR})
@@ -63,6 +68,8 @@ target_link_libraries(${PROJECT_NAME}
 		CONAN_PKG::glfw 
 		CONAN_PKG::glew 
 		CONAN_PKG::glm
+		CONAN_PKG::stb
+		CONAN_PKG::bullet3
 		)
 
 enable_testing(false)

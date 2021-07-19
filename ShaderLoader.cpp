@@ -44,7 +44,7 @@ GLuint ShaderLoader::createShader(GLenum shaderType, std::string source, const c
     return shader;
 }
 
-GLuint ShaderLoader::createProgramm(const char* vertShaderFilename, const char* fragShaderFilename) {
+GLuint ShaderLoader::createProgram(const char* vertShaderFilename, const char* fragShaderFilename) {
     std::string vertShaderCode = readShader(vertShaderFilename);
     std::string fragShaderCode = readShader(fragShaderFilename);
 
